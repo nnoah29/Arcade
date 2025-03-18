@@ -5,15 +5,23 @@
 ** | '_ \ | | | |     | '_ \ | '_ \  / _ \  / _` || '_ \   / /  \__, |
 ** | |_) || |_| |     | | | || | | || (_) || (_| || | | | / /_    / / 
 ** |_.__/  \__, |     |_| |_||_| |_| \___/  \__,_||_| |_||____|  /_/ 
-**          __/ |     on 17/03/25.                                          
+**          __/ |     on 18/03/25.                                          
 **         |___/ 
 */
 
-#include <iostream>
-#include <ostream>
+#ifndef IGRAPHICS_HPP
+#define IGRAPHICS_HPP
 
-int main()
-{
-    std::cout << "Hello World!" << std::endl;
-    return 0;
-}
+namespace Arcade {
+
+class IGraphics {
+    public:
+    virtual ~IGraphics() = default;
+    virtual Arcade::Input getInput() = 0;
+    virtual void draw(GameMap map);
+
+};
+
+} // Arcade
+
+#endif //IGRAPHICS_HPP
