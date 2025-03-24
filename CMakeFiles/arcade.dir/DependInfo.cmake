@@ -1,0 +1,25 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  )
+
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/jacex10/B-OOP-400-COT-4-1-arcade-chrisnaud.agossou/src/graphicals/IGraphics.cpp" "CMakeFiles/arcade.dir/src/graphicals/IGraphics.cpp.o" "gcc" "CMakeFiles/arcade.dir/src/graphicals/IGraphics.cpp.o.d"
+  "/home/jacex10/B-OOP-400-COT-4-1-arcade-chrisnaud.agossou/src/graphicals/sfml/SFMLGraphics.cpp" "CMakeFiles/arcade.dir/src/graphicals/sfml/SFMLGraphics.cpp.o" "gcc" "CMakeFiles/arcade.dir/src/graphicals/sfml/SFMLGraphics.cpp.o.d"
+  "/home/jacex10/B-OOP-400-COT-4-1-arcade-chrisnaud.agossou/src/main.cpp" "CMakeFiles/arcade.dir/src/main.cpp.o" "gcc" "CMakeFiles/arcade.dir/src/main.cpp.o.d"
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

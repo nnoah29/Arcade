@@ -16,6 +16,7 @@
 #include "../games/IGame.hpp"
 #include "../graphicals/IGraphics.hpp"
 #include <dlfcn.h>
+#include <stdexcept>
 
 
 class Core {

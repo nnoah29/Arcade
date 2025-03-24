@@ -12,15 +12,17 @@
 #ifndef IGRAPHICS_HPP
 #define IGRAPHICS_HPP
 
+#include "../games/IGame.hpp"
+
 namespace Arcade {
 
-class IGraphics {
-    public:
-    virtual ~IGraphics() = default;
-    virtual Arcade::Input getInput() = 0;
-    virtual void draw(GameMap map);
+    class IGraphics {
+        public:
+        virtual ~IGraphics() = 0;
+        virtual Arcade::Input getInput() = 0;
+        virtual void draw(arcade::GameMap map) = 0;
 
-};
+    };
 
 } // Arcade
 
