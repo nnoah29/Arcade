@@ -193,4 +193,10 @@ namespace Arcade {
         m_window.display();
     }
 
+    SFMLGraphics::~SFMLGraphics() {
+        if (m_window.isOpen()) {
+            m_window.close();
+        }
+    }
+
 }

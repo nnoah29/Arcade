@@ -18,7 +18,7 @@ namespace Arcade {
 
     class IGraphics {
         public:
-        virtual ~IGraphics() = 0;
+        virtual ~IGraphics() = default;
         virtual Arcade::Input getInput() = 0;
         virtual void draw(arcade::GameMap map) = 0;
 

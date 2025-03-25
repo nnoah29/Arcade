@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -fno-gnu-unique -Wall -Wextra -O3 -DNDEBUG -shared -Wl,-soname,libarcade_snake.so -o /home/jacex10/B-OOP-400-COT-4-1-arcade-chrisnaud.agossou/lib/libarcade_snake.so CMakeFiles/arcade_snake.dir/src/games/snake/Snake.cpp.o CMakeFiles/arcade_snake.dir/src/games/snake/SnakeModule.cpp.o

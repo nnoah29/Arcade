@@ -24,6 +24,7 @@ namespace Arcade {
 
         public:
             SFMLGraphics();
+            ~SFMLGraphics() override;
             
             Input getInput() override;
             void draw(arcade::GameMap map) override;
