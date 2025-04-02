@@ -16,50 +16,61 @@
 #include "../games/IGame.hpp"
 #include "../graphicals/IGraphics.hpp"
 #include <dlfcn.h>
-#include <stdexcept>
 
 
 class Core {
 private:
     std::unique_ptr<Arcade::IGame> _game;
     std::unique_ptr<Arcade::IGraphics> _graphics;
+    void* _gameHandle = nullptr;
+    void* _graphicsHandle = nullptr;
 
-    void loadGame(std::string libPath)
+    void loadGame(const std::string& libPath)
     {
-        void *createGraphics = nullptr;
-        void *createGame = nullptr;
-        void *handle = dlopen(libPath.c_str(), RTLD_LAZY);
+        _gameHandle = dlopen(libPath.c_str(), RTLD_LAZY);
+        if (!_gameHandle) throw std::runtime_error(dlerror());
 
-        if (!handle) throw std::runtime_error(dlerror());
-
-        createGame = dlsym(handle, "createGame");
-        if (createGame) {
-            const auto gameFactory = reinterpret_cast<Arcade::IGame*(*)()>(createGame);
-            if (gameFactory)
-                _game.reset(gameFactory());
-            else
-                throw std::runtime_error("Failed to cast createGame symbol.");
-            dlclose(handle);
-            return;
+        void *createGame = dlsym(_gameHandle, "createGame");
+        if (!createGame) {
+            dlclose(_gameHandle);
+            throw std::runtime_error("Could not find symbol 'createGame' in " + libPath);
         }
 
-        createGraphics = dlsym(handle, "createGraphics");
-        if (createGraphics) {
-            const auto graphicsFactory = reinterpret_cast<Arcade::IGraphics*(*)()>(createGraphics);
-            if (graphicsFactory)
-                _graphics.reset(graphicsFactory());
-            else
-                throw std::runtime_error("Failed to cast createGraphics symbol.");
-            dlclose(handle);
-            return;
+        const auto gameFactory = reinterpret_cast<Arcade::IGame*(*)()>(createGame);
+        if (gameFactory != nullptr)
+            _game.reset(gameFactory());
+        else
+            throw std::runtime_error("Failed to cast createGame symbol.");
+    }
+
+    void loadGraphics(const std::string& libPath)
+    {
+        _graphicsHandle = dlopen(libPath.c_str(), RTLD_LAZY);
+        if (!_graphicsHandle) throw std::runtime_error(dlerror());
+
+        void *createGraphics = dlsym(_graphicsHandle, "createGraphics");
+        if (!createGraphics) {
+            dlclose(_graphicsHandle);
+            throw std::runtime_error("Could not find symbol 'createGraphics' in " + libPath);
         }
-        dlclose(handle);
-        throw std::runtime_error("Could not find symbol '" + std::string(libPath) + "'");
+
+        const auto graphicsFactory = reinterpret_cast<Arcade::IGraphics*(*)()>(createGraphics);
+        if (graphicsFactory != nullptr)
+            _graphics.reset(graphicsFactory());
+        else
+            throw std::runtime_error("Failed to cast createGraphics symbol.");
     }
 public:
-    Core(const std::string& libPath, int magic_number){
-        (void)magic_number;
-        loadGame(libPath);
+    Core(const std::string& gamePath,  const std::string& graphPath){
+        loadGame(gamePath);
+        //std::cout << "game is loaded" << std::endl;
+        loadGraphics(graphPath);
+        //std::cout << "graphics is loaded" << std::endl;
+    }
+
+    ~Core() {
+        if (_gameHandle)     dlclose(_gameHandle);
+        if (_graphicsHandle) dlclose(_graphicsHandle);
     }
 
     void run() const
@@ -72,7 +83,6 @@ public:
             user_input = _graphics->getInput();
             _game->update(user_input);
             _graphics->draw(_game->getMap());
-
         }
     }
 };

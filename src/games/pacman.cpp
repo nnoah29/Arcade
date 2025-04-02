@@ -9,25 +9,11 @@
 **         |___/ 
 */
 
-#ifndef IGRAPHICS_HPP
-#define IGRAPHICS_HPP
+#include "pacman.hpp"
 
-#include "../../includes/gameMap.hpp"
-#include  "../../includes/my.hpp"
+#include <memory>
 
-namespace Arcade {
 
-class IGraphics {
-protected:
-    std::string name;
-public:
-    virtual ~IGraphics() = default;
-    virtual Arcade::Input getInput() = 0;
-    virtual void draw(GameMap map) = 0;
-    virtual std::string getName() = 0;
-
-};
-
-} // Arcade
-
-#endif //IGRAPHICS_HPP
+extern "C" Arcade::IGame* createGame() {
+    return new Arcade::pacman();
+}

@@ -12,37 +12,18 @@
 #ifndef MY_HPP
 #define MY_HPP
 
-namespace arcade {
-    enum class CellType {
-        EMPTY,          // Cellule vide
-        WALL,           // Mur
-        SNAKE_HEAD,     // Tête du serpent
-        SNAKE_BODY,     // Corps du serpent
-        FOOD            // Nourriture
+#include <memory>
+#include <fstream>
+
+namespace Arcade
+{
+    enum class Input {
+        UP, DOWN, LEFT, RIGHT, ENTER,
+        BACK, SWITCH_GAME, SWITCH_LIB,
+        RESTART, EXIT, MENU, NONE,
     };
 }
 
-typedef struct Cell
-{
-    /// positions
-    size_t x = -1;
-    size_t y = -1;
-
-    ///Propriétés générales
-    bool isWall = false;        // Pour Pacman, Nibbler, Qix (bordures)
-    bool isOccupied = false;    // Par un joueur ou un ennemi (utile pour Snake, Centipede)
-    bool isVisible = true;      // Pour Qix ou Minesweeper (cases découvertes/cachées)
-
-    /// Entités possibles
-    bool hasPlayer = false;     // Snake, Pacman, Solarfox
-    bool hasEnemy = false;      // Ghosts (Pacman), Qix entity, Centipede segments
-    bool hasBonus = false;      // Fruits (Snake), Dots (Pacman), Power-up (Solarfox)
-    bool hasProjectile = false; // Tir dans Centipede ou Solarfox
-
-    arcade::CellType type = arcade::CellType::EMPTY;
-    std::string color = "white";
-
-    explicit Cell(size_t _x = -1, size_t _y = -1) : x(_x), y(_y) {}
-} Cell;
+int random(int a, int b);
 
 #endif //MY_HPP
