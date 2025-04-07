@@ -86,7 +86,7 @@ namespace Arcade {
         while (m_window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 m_window.close();
-                return Input::EXIT;
+                exit(0);
             }
             
             if (event.type == sf::Event::KeyPressed) {

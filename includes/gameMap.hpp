@@ -17,6 +17,7 @@
 #include <fstream>
 #include <filesystem>
 #include <unordered_map>
+#include <iostream>
 
 #include "my.hpp"
 namespace Arcade
@@ -126,8 +127,6 @@ namespace Arcade
                 }
                 std::fstream file(filepath);
                 std::cout << "chargement de la carte depuis le fichier: " << filepath << std::endl;
-                if (file.fail()) throw std::runtime_error("Impossible d'ouvrir le fichier de la map.");
-                std::ifstream file(filepath);
                 if (!file.is_open()) throw std::runtime_error("Impossible d'ouvrir le fichier de la map.");
 
                 map.clear();
