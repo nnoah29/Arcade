@@ -15,6 +15,8 @@
 #include <string>
 #include <map>
 #include <fstream>
+#include <filesystem>
+#include <unordered_map>
 
 #include "my.hpp"
 namespace Arcade
@@ -56,6 +58,18 @@ namespace Arcade
             std::string message = "";
             bool gameOver = false;
             std::map<std::string, bool> flags;
+            std::string imagePathsDirectory;
+            std::unordered_map<EntityType, std::string> entityImagePaths = {
+                {EntityType::EMPTY,       "empty.png"},
+                {EntityType::WALL,        "wall.png"},
+                {EntityType::PLAYER,      "player.png"},
+                {EntityType::ENEMY,       "enemy.png"},
+                {EntityType::BONUS,       "bonus.png"},
+                {EntityType::BIG_BONUS,   "big_bonus.png"},
+                {EntityType::PROJECTILE,  "projectile.png"},
+                {EntityType::HIDDEN,      "hidden.png"},
+                {EntityType::BORDER,      "border.png"}
+            };
 
         public:
             GameMap(size_t level, size_t width, size_t height) : level(level), width(width), height(height) {
@@ -92,14 +106,34 @@ namespace Arcade
                 }
             }
 
+            void setEntityImagePath(EntityType type, const std::string& path) {
+                entityImagePaths[type] = path;
+            }
+    
+            std::string getEntityImagePath(EntityType type) const {
+                const auto it = entityImagePaths.find(type);
+                if (it != entityImagePaths.end())
+                    return it->second;
+                return "";
+            }
+
             void chargeMap(const std::string& filepath)
             {
+                if (!std::filesystem::exists(filepath)) {
+                    throw std::runtime_error("Impossible d'ouvrir le fichier de la map.");
+                    std::cerr << "[WARN] Fichier de map introuvable : " << filepath << std::endl;
+                    return;
+                }
+                std::fstream file(filepath);
+                std::cout << "chargement de la carte depuis le fichier: " << filepath << std::endl;
+                if (file.fail()) throw std::runtime_error("Impossible d'ouvrir le fichier de la map.");
                 std::ifstream file(filepath);
                 if (!file.is_open()) throw std::runtime_error("Impossible d'ouvrir le fichier de la map.");
 
                 map.clear();
                 std::string line;
                 size_t y = 0;
+                size_t maxWidth = 0;
                 while (std::getline(file, line)) {
                     std::vector<Cell> row;
                     for (size_t x = 0; x < line.size(); ++x) {
@@ -116,9 +150,13 @@ namespace Arcade
                         }
                         row.emplace_back(x, y, type);
                     }
+                    if (row.size() > maxWidth)
+                        maxWidth = row.size();
                     map.push_back(row);
                     y++;
                 }
+                height = map.size();
+                width = maxWidth;
             }
 
 
