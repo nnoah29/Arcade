@@ -7,7 +7,7 @@ namespace Arcade {
         m_lastInput(Input::NONE),
         m_isRunning(true)
     {
-        name = "NCurses";
+        name = "nCurses";
         
         // Initialize ncurses
         initscr();
