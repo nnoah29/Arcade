@@ -20,7 +20,7 @@ namespace Arcade
     enum class Input {
         UP, DOWN, LEFT, RIGHT, ENTER,
         BACK, SWITCH_GAME, SWITCH_LIB,
-        RESTART, EXIT, MENU, NONE,
+        RESTART, EXIT, MENU, NONE, ESCAPE
     };
 }
 

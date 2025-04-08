@@ -148,6 +148,8 @@ namespace Arcade {
                 newHead.x++;
                 break;
             case Input::EXIT:
+            break;
+            case Input::ESCAPE:
                 break;
             case Input::SWITCH_GAME:
             case Input::SWITCH_LIB:

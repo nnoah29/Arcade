@@ -281,7 +281,7 @@ namespace Arcade {
             m_infoText.setString(infoText);
             m_window.draw(m_infoText);
         }
-        
+
         if (map.isGameOver()) {
             m_statusText.setString("Game Over!\nPress R to restart");
             m_window.draw(m_statusText);

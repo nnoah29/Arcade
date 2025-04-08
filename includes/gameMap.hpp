@@ -107,6 +107,14 @@ namespace Arcade
                 }
             }
 
+            void setImagePathDirectory(const std::string& path) {
+                imagePathsDirectory = path;
+            }
+
+            std::string getImagePathsDirectory() {
+                return imagePathsDirectory;
+            }
+
             void setEntityImagePath(EntityType type, const std::string& path) {
                 entityImagePaths[type] = path;
             }
@@ -158,9 +166,31 @@ namespace Arcade
                 width = maxWidth;
             }
 
+            void afficherMap() const
+            {
+                for (const auto& row : map) {
+                    for (const auto& cell : row) {
+                        char symbol = ' ';
+                        switch (cell.entity) {
+                            case EntityType::EMPTY:       symbol = ' '; break;
+                            case EntityType::WALL:        symbol = '#'; break;
+                            case EntityType::PLAYER:      symbol = 'P'; break;
+                            case EntityType::ENEMY:       symbol = 'E'; break;
+                            case EntityType::BONUS:       symbol = 'B'; break;
+                            case EntityType::BIG_BONUS:   symbol = 'O'; break;
+                            case EntityType::PROJECTILE:  symbol = 'X'; break;
+                            case EntityType::HIDDEN:      symbol = '?'; break;
+                            case EntityType::BORDER:      symbol = '|'; break;
+                            default:                      symbol = '.'; break;
+                        }
+                        std::cout << symbol;
+                    }
+                    std::cout << std::endl;
+                }
+            }
 
             bool hasScore() const { return score > 0; }
-            int getScore() const { return score; }
+            size_t getScore() const { return score; }
             void setScore(int _score) { score = _score; }
 
             bool hasHighScore() const { return highScore > 0; }
@@ -172,7 +202,7 @@ namespace Arcade
             void setLevel(size_t _level) { level = _level; }
 
             bool hasLives() const { return lives > 0; }
-            int getLives() const { return lives; }
+            size_t getLives() const { return lives; }
             void setLives(int _lives) { lives = _lives; }
 
             bool hasTimeLeft() const { return timeLeft > 0; }
@@ -191,7 +221,17 @@ namespace Arcade
                 return it != flags.end() && it->second;
             }
             
+            
             void setFlag(const std::string& flag, bool value = true) { flags[flag] = value; }
+
+            void setScore(size_t score) {
+                this->score = score;
+            }
+    
+            void setLives(size_t lives)
+            {
+                this->lives = lives;
+            }
     };
 }
 

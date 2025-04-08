@@ -83,6 +83,7 @@ public:
             user_input = _graphics->getInput();
             _game->update(user_input);
             _graphics->draw(_game->getMap());
+            if (user_input == Arcade::Input::ESCAPE) break;
         }
     }
 };
