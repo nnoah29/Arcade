@@ -1,4 +1,4 @@
-#include "ncurse.hpp"
+#include "nCurse.hpp"
 
 namespace Arcade {
 
@@ -7,7 +7,7 @@ namespace Arcade {
         m_lastInput(Input::NONE),
         m_isRunning(true)
     {
-        name = "nCurses";
+        name = "NCurses";
         
         // Initialize ncurses
         initscr();

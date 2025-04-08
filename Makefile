@@ -6,7 +6,8 @@ CXX         := g++
 CXXFLAGS    := -Wall -Wextra -Werror -std=c++20 -Iincludes -fPIC -fno-gnu-unique
 LDFLAGS     := -ldl
 SFML_LIBS	:= -lsfml-graphics -lsfml-window -lsfml-system
-NCURSES_LIBS := -lncurses
+NCURSES_LIBS:= -lncurses
+SDL2_LIBS   := -lSDL2 -lSDL2_image -lSDL2_ttf
 
 
 DEBUG       ?= 0
@@ -65,10 +66,10 @@ $(NAME): $(CORE_OBJS)
 	@echo "$(GREEN)[OK] Core built.$(NC)"
 
 $(LIB_DIR)/arcade_%.so: $(GRAPHICS_DIR)/%.cpp | $(LIB_DIR)
-	$(SILENT)$(CXX) $(CXXFLAGS) -shared $< -o $@ $(SFML_LIBS) $(NCURSES_LIBS)
+	-$(SILENT)$(CXX) $(CXXFLAGS) -shared $< -o $@ $(SFML_LIBS) $(NCURSES_LIBS) $(SDL2_LIBS)
 
 $(LIB_DIR)/arcade_%.so: $(GAMES_DIR)/%.cpp | $(LIB_DIR)
-	$(SILENT)$(CXX) $(CXXFLAGS) -shared $< -o $@
+	-$(SILENT)$(CXX) $(CXXFLAGS) -shared $< -o $@
 
 $(OBJ_DIR):
 	$(SILENT)mkdir -p $(OBJ_DIR)

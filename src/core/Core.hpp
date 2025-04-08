@@ -78,6 +78,7 @@ public:
         if (!_game)     throw std::runtime_error("Could not load Game");
         if (!_graphics) throw std::runtime_error("Could not load Graphics library");
 
+        _game->initMap();
         while (true) {
             auto user_input = Arcade::Input::NONE;
             user_input = _graphics->getInput();

@@ -20,8 +20,6 @@ int random(int a, int b)
     std::uniform_int_distribution<int> distrib(a, b); // Distribution uniforme entre 1 et 4
 
     return distrib(gen);
-
-    std::unique_ptr<int> nb;
 }
 
 void bof (int *i)

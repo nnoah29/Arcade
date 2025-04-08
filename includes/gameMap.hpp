@@ -107,7 +107,7 @@ namespace Arcade
                 }
             }
 
-            void setImagePathDirectory(const std::string& path) {
+            void setImagePathsDirectory(const std::string& path) {
                 imagePathsDirectory = path;
             }
 
