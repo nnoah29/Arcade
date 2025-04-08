@@ -244,10 +244,10 @@ namespace Arcade {
             Cell* snakeCell = map->getCell(segment.x, segment.y);
             if (snakeCell) {
                 if (isHead) {
-                    snakeCell->entity = EntityType::SNAKE_HEAD;
+                    snakeCell->entity = EntityType::PLAYER;
                     isHead = false;
                 } else {
-                    snakeCell->entity = EntityType::SNAKE_BODY;
+                    snakeCell->entity = EntityType::PLAYER;
                 }
             }
         }

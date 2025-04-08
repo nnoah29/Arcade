@@ -33,8 +33,7 @@ namespace Arcade
         std::unordered_map<Arcade::EntityType, SDL_Color> colors;
         std::unordered_map<std::string, SDL_Texture*> imgTexture;
 
-        static SDL_Texture* loadTexture(const std::string& path, SDL_Renderer* renderer)
-        {
+        static SDL_Texture* loadTexture(const std::string& path, SDL_Renderer* renderer) {
             SDL_Surface* surface = IMG_Load(path.c_str());
             if (!surface) {
                 return nullptr;

@@ -241,10 +241,10 @@ namespace Arcade {
             Cell* nibblerCell = map->getCell(segment.x, segment.y);
             if (nibblerCell) {
                 if (isHead) {
-                    nibblerCell->entity = EntityType::SNAKE_HEAD;
+                    nibblerCell->entity = EntityType::PLAYER;
                     isHead = false;
                 } else {
-                    nibblerCell->entity = EntityType::SNAKE_BODY;
+                    nibblerCell->entity = EntityType::PLAYER;
                 }
             }
         }
