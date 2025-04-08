@@ -101,7 +101,7 @@ namespace Arcade {
                         m_lastInput = Input::DOWN;
                         break;
                     case sf::Keyboard::Left:
-                    case sf::Keyboard::A:
+                    case sf::Keyboard::Q:
                         m_lastInput = Input::LEFT;
                         break;
                     case sf::Keyboard::Right:
@@ -119,9 +119,6 @@ namespace Arcade {
                         break;
                     case sf::Keyboard::M:
                         m_lastInput = Input::MENU;
-                        break;
-                    case sf::Keyboard::Q:
-                        m_lastInput = Input::EXIT;
                         break;
                     default:
                         break;
