@@ -34,6 +34,7 @@ namespace Arcade {
             void spawnFood();
             bool checkCollision(size_t x, size_t y) const;
             void updateMap();
+            void resetSnakePosition();
 
         public:
             Snake();

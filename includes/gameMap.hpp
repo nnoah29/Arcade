@@ -220,6 +220,15 @@ namespace Arcade
                 auto it = flags.find(flag);
                 return it != flags.end() && it->second;
             }
+
+            void decrementLife() {
+                if (lives > 0) {
+                    lives--;
+                    if (lives <= 0) {
+                        setGameOver(true);
+                    }
+                }
+            }
             
             
             void setFlag(const std::string& flag, bool value = true) { flags[flag] = value; }

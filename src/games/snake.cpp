@@ -164,8 +164,14 @@ namespace Arcade {
         Cell* newHeadCell = map->getCell(newHead.x, newHead.y);
         
         if (newHeadCell && newHeadCell->entity == EntityType::WALL) {
-            gameOver = true;
-            return;
+            map->decrementLife();
+            if (map->getLives() <= 0) {
+                gameOver = true;
+                return;
+            } else {
+                resetSnakePosition();
+                return;
+            }
         }
         
         bool collidesWithBody = false;
@@ -179,8 +185,14 @@ namespace Arcade {
         }
 
         if (collidesWithBody) {
-            gameOver = true;
-            return;
+            map->decrementLife();
+            if (map->getLives() <= 0) {
+                gameOver = true;
+                return;
+            } else {
+                resetSnakePosition();
+                return;
+            }
         }
         
         m_snake.push_front(newHead);
@@ -199,6 +211,21 @@ namespace Arcade {
         } else {
             m_snake.pop_back();
         }
+    }
+
+    void Snake::resetSnakePosition()
+    {
+        m_snake.clear();
+        
+        size_t startX = mapWidth / 2;
+        size_t startY = mapHeight / 2;
+        
+        for (size_t i = 0; i < INITIAL_SNAKE_SIZE; ++i) {
+            m_snake.push_back({startX - i, startY});
+        }
+        
+        m_direction = Arcade::Input::RIGHT;
+        m_nextDirection = Arcade::Input::RIGHT;
     }
 
     void Snake::spawnFood()
