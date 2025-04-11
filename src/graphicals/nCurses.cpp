@@ -1,4 +1,4 @@
-#include "nCurse.hpp"
+#include "nCurses.hpp"
 
 namespace Arcade {
 
@@ -9,21 +9,17 @@ namespace Arcade {
     {
         name = "NCurses";
         
-        // Initialize ncurses
         initscr();
         start_color();
         cbreak();
         noecho();
         keypad(stdscr, TRUE);
-        curs_set(0);           // Hide cursor
-        nodelay(stdscr, TRUE); // Non-blocking input
-        timeout(100);          // Timeout for getch()
-        
+        curs_set(0);
+        nodelay(stdscr, TRUE);
+        timeout(100);
         m_window = newwin(LINES, COLS, 0, 0);
         box(m_window, 0, 0);
         wrefresh(m_window);
-        
-        // Initialize colors
         initColors();
     }
 
@@ -183,3 +179,39 @@ extern "C" {
         return new Arcade::NCurseGraphics();
     }
 }
+
+
+// void NCurseGraphics::draw(GameMap map)
+// {
+//     wclear(m_window);
+//     box(m_window, 0, 0);
+//     auto& grid = map.getCell();
+//     for (size_t y = 0; y < grid.size(); ++y) {
+//         for (size_t x = 0; x < grid[y].size(); ++x) {
+//             renderCell(y, x, grid[y][x].entity);
+//         }
+//     }
+    
+//     // Score et lives sont obtenus directement depuis la map
+//     if (map.hasScore()) {
+//         mvwprintw(m_window, 0, 2, "Score: %ld", map.getScore());
+//     }
+    
+//     if (map.hasLives()) {
+//         mvwprintw(m_window, 0, 15, "Lives: %ld", map.getLives());
+//     }
+    
+//     // Affiche le message de game over si nécessaire
+//     if (map.isGameOver()) {
+//         wattron(m_window, A_BOLD);
+//         mvwprintw(m_window, grid.size() / 2, (COLS - 9) / 2, "GAME OVER");
+//         wattroff(m_window, A_BOLD);
+//     }
+    
+//     // Affiche d'autres messages si nécessaire
+//     if (map.hasMessage()) {
+//         mvwprintw(m_window, grid.size() + 1, 2, "%s", map.getMessage().c_str());
+//     }
+    
+//     wrefresh(m_window);
+// }
