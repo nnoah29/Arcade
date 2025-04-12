@@ -1,4 +1,4 @@
-#include "nCurses.hpp"
+#include "ncurses.hpp"
 
 namespace Arcade {
 
