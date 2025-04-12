@@ -28,6 +28,7 @@ namespace Arcade {
         playing = true;
         score = 0;
         level = 1;
+        m_remainingFood = FOOD_PER_LEVEL;
         
         mapWidth = DEFAULT_WIDTH;
         mapHeight = DEFAULT_HEIGHT;
@@ -86,13 +87,17 @@ namespace Arcade {
 
     void Nibbler::update(Input userInput)
     {
-        if (gameOver || gameWon) {
+        if (gameOver) {
+            if (userInput == Input::RESTART) {
+                reset();
+            }
+            return;
+        } else if (gameWon) {
             if (userInput == Input::RESTART) {
                 reset();
             }
             return;
         }
-        
         switch (userInput) {
             case Input::UP:
                 if (m_direction != Arcade::Input::DOWN) {
@@ -182,11 +187,14 @@ namespace Arcade {
         
         if (newHead.x == m_food.x && newHead.y == m_food.y) {
             score += 10;
+            m_remainingFood--;
             
+            if (m_remainingFood <= 0) {
+                gameWon = true;
+                return;
+            }
             spawnFood();
-            
             if (score % 50 == 0) {
-                level++;
                 if (m_updateInterval > 50) {
                     m_updateInterval -= 10;
                 }
@@ -256,10 +264,11 @@ namespace Arcade {
         if (gameOver) {
             map->setMessage("Game Over! Press R to restart");
         } else if (gameWon) {
-            map->setMessage("Victory! Press R to restart");
+            map->setMessage("Level completed! Press SPACE to continue or R to restart");
             map->setFlag("VICTORY", true);
         } else {
-            map->setMessage("");
+            std::string msg = "Food remaining: " + std::to_string(m_remainingFood);
+            map->setMessage(msg);
             map->setFlag("VICTORY", false);
         }
     }

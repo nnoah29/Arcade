@@ -26,6 +26,8 @@ namespace Arcade {
         Input m_nextDirection;
 
         NibblerPart m_food;
+        const size_t FOOD_PER_LEVEL = 10;
+        size_t m_remainingFood;
 
         std::chrono::time_point<std::chrono::steady_clock> m_lastUpdateTime;
         size_t m_updateInterval;
@@ -33,6 +35,7 @@ namespace Arcade {
         std::mt19937 m_rng;
 
         void moveNibbler();
+        void nextLevel();
         void spawnFood();
         bool checkCollision(size_t x, size_t y) const;
         void updateMap();
