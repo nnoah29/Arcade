@@ -35,39 +35,38 @@ void getAllLib()
 
 bool ifGraphic(const std::string& libPath)
 {
-    (void)libPath;
-    // void* _graphicsHandle = dlopen(libPath.c_str(), RTLD_LAZY);
-    // if (!_graphicsHandle) throw std::runtime_error(dlerror());
-    //
-    // const void *createGraphics = dlsym(_graphicsHandle, "createGraphics");
-    // if (createGraphics) {
-    //     dlclose(_graphicsHandle);
-    //     return true;
-    // }
-    // dlclose(_graphicsHandle);
+    void* _graphicsHandle = dlopen(libPath.c_str(), RTLD_LAZY);
+    if (!_graphicsHandle) throw std::runtime_error(dlerror());
+
+    const void *createGraphics = dlsym(_graphicsHandle, "createGraphics");
+    if (createGraphics) {
+        dlclose(_graphicsHandle);
+        return true;
+    }
+    dlclose(_graphicsHandle);
     return false;
 }
 
 bool ifGame(const std::string& libPath)
 {
-    (void)libPath;
-    // void* _gameHandle = dlopen(libPath.c_str(), RTLD_LAZY);
-    // if (!_gameHandle) throw std::runtime_error(dlerror());
-    //
-    // const void *createGame = dlsym(_gameHandle, "createGame");
-    // if (!createGame) {
-    //     dlclose(_gameHandle);
-    //     return true;
-    // }
-    // dlclose(_gameHandle);
+    void* _gameHandle = dlopen(libPath.c_str(), RTLD_LAZY);
+    if (!_gameHandle) throw std::runtime_error(dlerror());
+
+    const void *createGame = dlsym(_gameHandle, "createGame");
+    if (createGame) {
+        dlclose(_gameHandle);
+        return true;
+    }
+    dlclose(_gameHandle);
     return false;
 }
 
 void getAllGame()
 {
-    int i = 1;
+    int i = 0;
     for (const auto& l : allLib) {
         if (ifGame(l)) {
+            std::cout << l << std::endl;
             GamePath[i] = l;
             i++;
         }
@@ -76,10 +75,11 @@ void getAllGame()
 
 void getAllGraph()
 {
-    int i = 1;
+    int i = 0;
     for (const auto& l : allLib) {
         if (ifGraphic(l)) {
             GraphPath[i] = l;
+            std::cout << l << std::endl;
             i++;
         }
     }

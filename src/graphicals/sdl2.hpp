@@ -105,6 +105,8 @@ namespace Arcade
                     case SDLK_LEFT: return Arcade::Input::LEFT;
                     case SDLK_RIGHT: return Arcade::Input::RIGHT;
                     case SDLK_ESCAPE: return Arcade::Input::ESCAPE;
+                    case SDLK_l: return Arcade::Input::SWITCH_LIB;
+                    case SDLK_g: return Arcade::Input::SWITCH_GAME;
                     default: return Arcade::Input::NONE;
                     }
                 }

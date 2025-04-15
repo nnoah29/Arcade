@@ -71,18 +71,29 @@ public:
     }
 
     ~Core() {
+        _game.reset();
+        _graphics.reset();
         if (_gameHandle)     dlclose(_gameHandle);
         if (_graphicsHandle) dlclose(_graphicsHandle);
     }
 
     void changeLib(const std::string& lib) {
         if (lib == "graphics") {
-            if (_graphicsHandle) dlclose(_graphicsHandle);
+            if (_graphicsHandle) {
+                _graphics.reset();
+                dlclose(_graphicsHandle);
+            }
+            _gameHandle = nullptr;
             const std::string nextGraphicsPath = getNextGraphics();
+            std::cout << nextGraphicsPath << std::endl;
             loadGraphics(nextGraphicsPath);
         }
         if (lib == "games") {
-            if (_gameHandle) dlclose(_gameHandle);
+            if (_gameHandle) {
+                _game.reset();
+                dlclose(_gameHandle);
+            }
+            _gameHandle = nullptr;
             const std::string nextGamesPath = getNextGame();
             loadGame(nextGamesPath);
         }
