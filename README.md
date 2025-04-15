@@ -8,7 +8,6 @@ Arcade est une plateforme de jeux rétro modulaire permettant de jouer à diffé
 
 - 🔄 Changement dynamique de bibliothèque graphique en cours de jeu
 - 🎲 Plusieurs jeux classiques disponibles
-- 💾 Sauvegarde des meilleurs scores
 - 🎛️ Interface utilisateur intuitive
 - 🔌 Architecture modulaire extensible
 
@@ -117,6 +116,5 @@ Ce projet est développé dans le cadre du module B-OOP-400 à EPITECH.
 ## ⚠️ Notes importantes
 
 - Les bibliothèques sont chargées dynamiquement au runtime
-- Les scores sont persistants entre les changements de bibliothèques
+- Les scores sont se reinitialise après défaite ou changements de bibliothèques
 - Le projet suit la norme EPITECH
-- Code coverage minimum : 80%
