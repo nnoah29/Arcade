@@ -160,7 +160,7 @@ namespace Arcade
                 }
             }
             SDL_RenderPresent(renderer);
-            std::cout << "map received" << std::endl;
+//          std::cout << "map received" << std::endl;
         }
         std::string getName() override { return name; }
 

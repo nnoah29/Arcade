@@ -1,19 +1,24 @@
-##########################################
-#   B     B                    B         #
-# # ###### # ###################### # ## #
-# # #    # #         P       B #    # #  #
-# # # ## # ######### ### ######## # # #O #
-# # # ## #        O               # # #  #
-# # #### # ### ########### ######## # ## #
-#O#      #   #  O  E E E E   #      #    #
-# ###################################### #
-#       B                    B         B #
-#  ##############   ###   #############  #
-#  #     B      #         #           #  #
-#  # ## # #######  ###  ####### # ##  #  #
-#B # #  #      O          #     # #   #  #
-#  # #  #### ########### ###### # #   #  #
-#  # #     #    B               # #B  #  #
-#  ######### #######################     #
-#                                        #
-##########################################
+#######################################
+# BBBBBBBBBBBBBBBB # BBBBBBBBBBBBBBBB #
+# B #### B ##### B # B ##### P #### B #
+# O #### B ##### B # B ##### B #### O #
+# BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB #
+# B #### B # B ######### B # B #### B #
+# BBBBBBBB # BBBBB # BBBBB # BBBBBBBB #
+######## B ##### B # B ##### B ########
+       # B # BBBBBBBBBBBBB # B #
+       # B # B ###BBB### B # B #
+######## B # B ##BBBBB## B # B ########
+#BBBBBBBBBBBBB ##EBEEE## BBBBBBBBBBBBB#
+######## B # B ######### B # B ########
+       # B # BBBBBBBBBBBBB # B #
+######## B # B ######### B # B ########
+## BBBBBBBBBBBBBBB # BBBBBBBBBBBBBBB ##
+## O ### B ##### B # B ##### B ### O ##
+## BBB # BBBBBBBBBBBBBBBBBBBBB # BBB ##
+##   B # B # B ######### B # B # B   ##
+#### B # B # B ######### B # B # B ####
+# BBBBBBBB # BBBBB # BBBBB # BBBBBBBB #
+# B ############ B # B ############ B #
+# BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB #
+#######################################

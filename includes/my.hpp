@@ -24,6 +24,9 @@ namespace Arcade
     };
 }
 
+std::string getNextGame();
+std::string getNextGraphics();
+
 int random(int a, int b);
 
 #endif //MY_HPP

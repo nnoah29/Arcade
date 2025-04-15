@@ -62,7 +62,9 @@ private:
     }
 public:
     Core(const std::string& gamePath,  const std::string& graphPath){
+        //(void)gamePath;
         loadGame(gamePath);
+        //(void)graphPath;
         //std::cout << "game is loaded" << std::endl;
         loadGraphics(graphPath);
         //std::cout << "graphics is loaded" << std::endl;
@@ -73,7 +75,20 @@ public:
         if (_graphicsHandle) dlclose(_graphicsHandle);
     }
 
-    void run() const
+    void changeLib(const std::string& lib) {
+        if (lib == "graphics") {
+            if (_graphicsHandle) dlclose(_graphicsHandle);
+            const std::string nextGraphicsPath = getNextGraphics();
+            loadGraphics(nextGraphicsPath);
+        }
+        if (lib == "games") {
+            if (_gameHandle) dlclose(_gameHandle);
+            const std::string nextGamesPath = getNextGame();
+            loadGame(nextGamesPath);
+        }
+    }
+
+    void run()
     {
         if (!_game)     throw std::runtime_error("Could not load Game");
         if (!_graphics) throw std::runtime_error("Could not load Graphics library");
@@ -82,9 +97,11 @@ public:
         while (true) {
             auto user_input = Arcade::Input::NONE;
             user_input = _graphics->getInput();
+            if (user_input == Arcade::Input::ESCAPE) break;
+            if (user_input == Arcade::Input::SWITCH_LIB) changeLib("graphics");
+            if (user_input == Arcade::Input::SWITCH_GAME) changeLib("game");
             _game->update(user_input);
             _graphics->draw(_game->getMap());
-            if (user_input == Arcade::Input::ESCAPE) break;
         }
     }
 };
