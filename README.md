@@ -77,11 +77,11 @@ make fclean       # Nettoyer les binaires et les librairies
 ## 📚 Bibliothèques graphiques
 
 | Bibliothèque | Fichier | Type | Performance |
-|--------------|---------|------|-------------|
+|--------------|---------|------|----------|
 | 🖼️ SFML | arcade_sfml.so | 2D moderne | ⚡⚡⚡ |
 | 🧮 NCurses | arcade_ncurses.so | Terminal | ⚡⚡⚡⚡⚡ |
 | 🎮 SDL2 | arcade_sdl2.so | 2D optimisée | ⚡⚡⚡⚡ |
-| 🖥️ GTK+ | arcade_gtk.so | Interface native | ⚡⚡⚡ |
+| 🖥️ GTK+ | arcade_gtk.so | Interface native |  |
 
 ## 🏗️ Architecture
 
